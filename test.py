@@ -21,7 +21,7 @@ class MyWindows(QtWidgets.QMainWindow, Ui_MainWindow):
         # self.initUI()
         self.slot_init()
         self.queren.clicked.connect(self.shuaxin)
-
+        self.init_table()
 
 
         # self.queren.clicked.connect(self.putimage)
@@ -34,7 +34,7 @@ class MyWindows(QtWidgets.QMainWindow, Ui_MainWindow):
     def putimage(self):
 
         # 打开摄像头并显示图像信息
-        pix = QPixmap('1001.jpg')
+        pix = QPixmap('QRcod.jpg')
         self.label_i.setPixmap(pix)
         # self.queren.setText('确认订单')
 
@@ -80,6 +80,45 @@ class MyWindows(QtWidgets.QMainWindow, Ui_MainWindow):
     def delaytime(self):
         self.queren.setEnabled(True)
         self.timer_button.stop()
+
+    def init_table(self):
+        print('-----初始化-----')
+        font = QFont('微软雅黑', 12)
+        font.setBold(False)  # 设置字体是否加粗
+        self.tableWidget.horizontalHeader().setFont(font)  # 设置表头字体
+        self.tableWidget.horizontalHeader().setFixedHeight(30)  # 设置表头高度
+        # self.tableWidget.setColumnWidth(0, 200)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.tableWidget.horizontalHeader().setStretchLastSection(False)  # 设置最后一列拉伸至最大,充满屏幕
+        self.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)  # 设置表格不可更改
+
+        # font_bill = QFont('微软雅黑', 10)
+        # self.tableWidget_bill.horizontalHeader().setFont(font_bill)  # 设置表头字体
+        # self.tableWidget_bill.horizontalHeader().setFixedHeight(30)  # 设置表头高度
+        # self.tableWidget_bill.horizontalHeader().setStretchLastSection(True)  # 设置最后一列拉伸至最大,充满屏幕
+        # self.tableWidget_bill.setEditTriggers(QAbstractItemView.NoEditTriggers)  # 设置表格不可更改
+
+        # 初始时按钮不可点击结算
+        # self.button_ok.setEnabled(False)
+        # self.button_pay.setEnabled(False)
+        # self.button_update.setEnabled(False)
+        # self.button_print.setEnabled(False)
+
+        # 识别到的商品显示窗口
+        self.tableWidget.clear()
+        # 设置列数
+        self.tableWidget.setColumnCount(4)
+        get_list = ['商品id', '商品名称', '单价(元)', '个数']
+        self.tableWidget.setHorizontalHeaderLabels(get_list)
+        print(get_list)
+
+        # 账单显示窗口
+        # self.tableWidget_bill.clear()
+        # self.tableWidget_bill.setColumnCount(2)
+        # bill_list = ['名称', '单价(元)*个数']
+        # self.tableWidget_bill.setHorizontalHeaderLabels(bill_list)
+        #
+        # print(bill_list)
 
 
     def slot_init(self):
