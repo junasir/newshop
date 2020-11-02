@@ -1,0 +1,2 @@
+model_checkpoint_path: "mynasnet.cpkt-1728"
+all_model_checkpoint_paths: "mynasnet.cpkt-1728"
